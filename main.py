@@ -35,7 +35,10 @@ prefs = {
 }
 chrome_options.add_experimental_option("prefs", prefs)
 
-# Inicializa o driver
+# Adicione este caminho explícito do Chromium (no Ubuntu)
+chrome_options.binary_location = "/usr/bin/chromium-browser"
+
+# Inicialize o driver normalmente
 driver = webdriver.Chrome(options=chrome_options)
 
 def login(driver):
