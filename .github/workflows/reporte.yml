@@ -1,39 +1,31 @@
 name: Reporte HxH
+
 on:
   schedule:
-    - cron: '*/10 * * * *'
-  workflow_dispatch:
+    - cron: '10 * * * *'  # Executa todo horário cheio + 30 min (ex: 01:30, 02:30...)
+  workflow_dispatch:      # Permite rodar manualmente pelo GitHub
 
 jobs:
-  run-script:
+  atualizar-dados:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do código
-        uses: actions/checkout@v3
+      - name: 🧾 Checkout do código
+        uses: actions/checkout@v4
 
-      - name: Instalar Python
-        uses: actions/setup-python@v4
+      - name: 🐍 Configurar Python
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.11'
 
-      - name: Restaurar hxh.json a partir do segredo
-        run: echo "$GCP_JSON_BASE64" | base64 -d > hxh.json
-        env:
-          GCP_JSON_BASE64: ${{ secrets.GCP_JSON_BASE64 }}
-      
-      - name: Instalar Chromium
-        run: sudo apt-get update && sudo apt-get install -y chromium-browser
-
-      - name: Instalar dependências
+      - name: 📦 Instalar dependências
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install playwright gspread oauth2client pytz
+          playwright install chromium
 
-      - name: Exibir hora atual (UTC e São Paulo)
+      - name: 🔐 Adicionar credenciais do Google Sheets (hxh.json)
         run: |
-          echo "Hora UTC: $(date -u)"
-          echo "Hora São Paulo: $(TZ='America/Sao_Paulo' date)"
+          echo "${{ secrets.GSHEET_CRED_JSON }}" > hxh.json
 
-      - name: Executar o script
-        run: python main.py
+      - name: ▶️ Executar script Python
+        run: python seu_script.py
