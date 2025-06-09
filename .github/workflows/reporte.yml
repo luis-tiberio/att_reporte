@@ -20,6 +20,8 @@ jobs:
 
       - name: 📦 Instalar dependências
         run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
           pip install playwright gspread oauth2client pytz
           playwright install chromium
 
@@ -28,4 +30,4 @@ jobs:
           echo "${{ secrets.GSHEET_CRED_JSON }}" > hxh.json
 
       - name: ▶️ Executar script Python
-        run: python seu_script.py
+        run: python main.py
