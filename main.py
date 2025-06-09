@@ -68,7 +68,7 @@ def update_google_sheets(data):
     scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
     creds = ServiceAccountCredentials.from_json_keyfile_name("hxh.json", scope)
     client = gspread.authorize(creds)
-    sheet = client.open_by_url('https://docs.google.com/spreadsheets/d/1_lmuTCD1-PX4S4a-M4TAVHoQ4r_X5C1ZssXdJhc80bA/edit?gid=0#gid=0').worksheet("Python")
+    sheet = client.open_by_url('https://docs.google.com/spreadsheets/d/1R1Ywt_8SuT3X154l1dS30NJEP-JZgoWzH-oq4bOJld0/edit?gid=0#gid=0').worksheet("Python")
 
     current_time = datetime.datetime.now(timezone)
     if 7 <= current_time.hour <= 23:
