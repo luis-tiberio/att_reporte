@@ -67,8 +67,8 @@ def get_data(driver):
     try:
         # Coletar dados do primeiro link
         driver.get("https://spx.shopee.com.br/#/dashboard/facility-soc/historical-data")
-        WebDriverWait(driver, 45).until(EC.presence_of_element_located((By.XPATH, '//*[@id="mgmt-dashboard-content"]')))
-        first_value = driver.find_element(By.XPATH, '//*[@id="mgmt-dashboard-content"]/div/div/div[2]/div/div/div[2]/div/div[2]/div[2]/div[2]/div/div/div/table/tbody/tr[2]/td[25]').text
+        WebDriverWait(driver, 45).until(EC.presence_of_element_located((By.XPATH, '//*[@id="mgmt-dashboard-content"]/div/div/div[2]/div/div[3]/div[2]/div/div[2]/div[1]/div/div/div[2]/div[2]/div[1]/div/div[2]/div/div/canvas')))
+        first_value = driver.find_element(By.XPATH, '/html/body/div[1]/div/div[2]/div[2]/div/div/div/div/div[2]/div/div[3]/div[2]/div/div[2]/div[1]/div/div/div[2]/div[2]/div[2]/div/div/div/table/tbody/tr[2]/td[25]').text
         data.append(first_value)
 
         # Coletar dados do segundo link
