@@ -1,5 +1,4 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -9,12 +8,7 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import time
 import datetime
-import subprocess
 import os
-from PIL import Image
-from PIL import ImageGrab
-import pygetwindow as gw
-import pyautogui
 import pytz
 
 timezone = pytz.timezone('America/Sao_Paulo')
