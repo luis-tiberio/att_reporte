@@ -26,8 +26,11 @@ jobs:
           playwright install chromium
 
       - name: 🔐 Adicionar credenciais do Google Sheets (hxh.json)
+        shell: bash
         run: |
-          echo "${{ secrets.GSHEET_CRED_JSON }}" > hxh.json
+          echo "$GCP_JSON_BASE64" | base64 -d > hxh.json
+        env:
+          GCP_JSON_BASE64: ${{ secrets.GCP_JSON_BASE64 }}
 
       - name: ▶️ Executar script Python
         run: python main.py
