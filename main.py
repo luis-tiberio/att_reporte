@@ -33,7 +33,8 @@ def get_data(page):
     try:
         # Primeiro link
         page.goto("https://spx.shopee.com.br/#/dashboard/facility-soc/historical-data")
-        page.wait_for_selector('xpath=//*[@id="mgmt-dashboard-content"]/div/div/div[2]/div/div[3]/div[2]/div/div[2]/div[1]/div/div/div[2]/div[2]/div[1]/div/div[2]/div/div/canvas', timeout=45000)
+        #page.wait_for_selector('xpath=//*[@id="mgmt-dashboard-content"]/div/div/div[2]/div/div[3]/div[2]/div/div[2]/div[1]/div/div/div[2]/div[2]/div[1]/div/div[2]/div/div/canvas', timeout=45000)
+        page.wait_for_timeout(10000)
         first_value = page.inner_text('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div/div/div[2]/div/div[3]/div[2]/div/div[2]/div[1]/div/div/div[2]/div[2]/div[2]/div/div/div/table/tbody/tr[2]/td[25]')
         data.append(first_value)
 
